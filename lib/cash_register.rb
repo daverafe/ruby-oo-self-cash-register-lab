@@ -1,8 +1,8 @@
 require "pry"
 class CashRegister
-    attr_accessor :total, :discount 
-    def initialize(total = 0, discount = 0)
-        @total = total
+    attr_accessor :total, :discount, :items 
+    def initialize(discount = 0)
+        @total = 0
         @discount = discount
         @items = []
     end
@@ -30,7 +30,6 @@ class CashRegister
         @items.flatten!  
     end
     def void_last_transaction
-        @total - @price  
-        @total = @last_total 
+        @total - @price 
     end
 end
