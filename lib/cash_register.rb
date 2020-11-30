@@ -1,15 +1,14 @@
 require "pry"
 class CashRegister
-    attr_accessor :total, :discount, :items 
+    attr_accessor :total, :discount, :items, :last_total   
     def initialize(discount = 0)
         @total = 0
         @discount = discount
         @items = []
     end
-    def add_item(title, price, quantity = 0)
+    def add_item(title, price, quantity = 1)
         if quantity > 0
-            @last_total = @total 
-            @price = price 
+            @last_total = price * quantity 
             @total += price * quantity
             @items << ("#{title}," * quantity).split(",") 
         else
@@ -30,6 +29,6 @@ class CashRegister
         @items.flatten!  
     end
     def void_last_transaction
-        @total - @price 
+        self.total = self.total - self.last_total 
     end
 end
